@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 const String _baseUrl =
-    "https://newsapi.org"; //here your base Url of your api
+    "https://student.valuxapps.com/api/"; //here your base Url of your api
 
 class Diorequest {
   static late Dio dio;
@@ -12,22 +12,28 @@ class Diorequest {
   //get data
   static Future<Response> getdata(
       {required String url,
-      Map<String, dynamic>? pram,
+      Map<String, dynamic>? querypram,
+      Object? data,
       Map<String, dynamic>? headers}) async {
     late Response myresponse;
     myresponse = await dio.get(url,
-        queryParameters: pram, options: Options(headers: headers));
+        queryParameters: querypram,
+        data: data,
+        options: Options(headers: headers));
     return myresponse;
   }
 
   //post data
   static Future<Response> postdata(
       {required String url,
-      Map<String, dynamic>? pram,
+      Map<String, dynamic>? querypram,
+      Object? data,
       Map<String, dynamic>? headers}) async {
     late Response myresponse;
     myresponse = await dio.post(url,
-        queryParameters: pram, options: Options(headers: headers));
+        queryParameters: querypram,
+        data: data,
+        options: Options(headers: headers));
     return myresponse;
   }
 
@@ -35,11 +41,14 @@ class Diorequest {
 
   static Future<Response> deletdata(
       {required String url,
-      Map<String, dynamic>? pram,
+      Map<String, dynamic>? querypram,
+      Object? data,
       Map<String, dynamic>? headers}) async {
     late Response myresponse;
     myresponse = await dio.delete(url,
-        queryParameters: pram, options: Options(headers: headers));
+        queryParameters: querypram,
+        data: data,
+        options: Options(headers: headers));
     return myresponse;
   }
 
@@ -47,24 +56,27 @@ class Diorequest {
 
   static Future<Response> putdata(
       {required String url,
-      Map<String, dynamic>? pram,
+      Map<String, dynamic>? querypram,
+      Object? data,
       Map<String, dynamic>? headers}) async {
     late Response myresponse;
     myresponse = await dio.put(url,
-        queryParameters: pram, options: Options(headers: headers));
+        queryParameters: querypram,
+        data: data,
+        options: Options(headers: headers));
     return myresponse;
   }
-
 
   //patch
 
   static Future<Response> patchdata(
       {required String url,
       Map<String, dynamic>? pram,
+      Object? data,
       Map<String, dynamic>? headers}) async {
     late Response myresponse;
     myresponse = await dio.patch(url,
-        queryParameters: pram, options: Options(headers: headers));
+        queryParameters: pram, data: data, options: Options(headers: headers));
     return myresponse;
   }
 }

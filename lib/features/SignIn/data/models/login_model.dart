@@ -7,7 +7,7 @@ class LogInModel extends LogInEntitie {
   factory LogInModel.fromJson(Map<String, dynamic> json) => LogInModel(
         status: json["status"],
         message: json["message"],
-        data: Data.fromJson(json["data"]),
+        data: Data.fromJson(json["data"]??{}),
       );
 
   Map<String, dynamic> toJson() => {
@@ -39,14 +39,14 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        id: json["id"],
-        name: json["name"],
-        email: json["email"],
-        phone: json["phone"],
-        image: json["image"],
-        points: json["points"],
-        credit: json["credit"]?.toDouble(),
-        token: json["token"],
+        id: json["id"]??-1,
+        name: json["name"]??'',
+        email: json["email"]??'',
+        phone: json["phone"]??"",
+        image: json["image"]??'',
+        points: json["points"]??-1,
+        credit: json["credit"]?.toDouble()??-1,
+        token: json["token"]??'',
       );
 
   Map<String, dynamic> toJson() => {
