@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app/injection_cont.dart' as di;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/Widgets/text_error_widget.dart';
 import '../widgets/banner_widget.dart';
 import '../widgets/items_widget.dart';
 import '../widgets/loading_widget.dart';
@@ -33,6 +34,8 @@ class HomePage extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
+                if (state is HomeDataErrorState)
+                  TextErrorWidget(message: state.mssageError),
                 if (state is HomeDataLoagingState) const ShimmerHomeWidget(),
                 if (state is HomeDataSuccessState ||
                     state is AddFavoriteSuccessState ||

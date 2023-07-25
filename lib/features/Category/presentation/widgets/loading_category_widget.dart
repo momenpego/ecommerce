@@ -22,7 +22,8 @@ class CategorySkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: 6,
+      physics: const BouncingScrollPhysics(),
+      itemCount: 8,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, childAspectRatio: 1.12),
       itemBuilder: (context, index) {

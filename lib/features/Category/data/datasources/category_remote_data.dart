@@ -71,7 +71,8 @@ class CategoryRemoteDataSourceImp implements CategoryRemoteDataSource {
 
   @override
   Future<CategoryItemsModel> getCategoryItems({required int id}) async {
-    final Response response = await Diorequest.getdata(url: 'categories/$id');
+    final Map<String, dynamic> headers = {'lang': 'en'};
+    final Response response = await Diorequest.getdata(url: 'categories/$id',headers: headers);
     if (response.statusCode == 200) {
       final CategoryItemsModel data =
           CategoryItemsModel.fromJson(response.data);

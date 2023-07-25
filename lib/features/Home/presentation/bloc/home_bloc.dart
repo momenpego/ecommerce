@@ -13,8 +13,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   GetHomeDataUseCase getHomeData;
   AddOrDeleteCartUseCase addOrDeleteCart;
   AddOrDeleteFavoriteUseCase addOrDeleteFavorite;
-  late List<HomeProduct> myListItems;
-  late List<HomeBanner> myListBanner;
+   List<HomeProduct> myListItems =[];
+  List<HomeBanner> myListBanner=[];
   HomeBloc(
       {required this.addOrDeleteCart,
       required this.addOrDeleteFavorite,
@@ -30,8 +30,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                       mssageError: _MessageOfError(failure: failure)))
                 },
             (data) => {
-                  myListItems = data.data.products,
-                  myListBanner = data.data.banners,
+                  myListItems.addAll(data.data.products),
+                  myListBanner.addAll(data.data.banners),
                   emit(HomeDataSuccessState())
                 });
       } else if (event is AddCartEvent) {

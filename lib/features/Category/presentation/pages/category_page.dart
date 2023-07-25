@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_app/injection_cont.dart' as di;
 
+import '../../../../core/Widgets/text_error_widget.dart';
 import '../widgets/loading_category_widget.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -22,10 +23,14 @@ class CategoryPage extends StatelessWidget {
         builder: (context, state) {
           return Column(
             children: [
-              if(state is AllCategoryLoadingState)
-               const ShimmerCategoryWidget(),
+              if (state is AllCategoryLoadingState)
+                const ShimmerCategoryWidget(),
               if (state is AllCategorySuccessState)
-                CategoryWidget(list: state.data.data.data)
+                CategoryWidget(list: state.data.data.data),
+              if (state is AllCategoryErrorState)
+                TextErrorWidget(
+                  message: state.message,
+                )
             ],
           );
         },
