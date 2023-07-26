@@ -18,20 +18,6 @@ class CategoryRepositorieImp implements CategoryRepositorie {
   CategoryRepositorieImp(
       {required this.netWorkChecker, required this.remoteDataSource});
   @override
-  Future<Either<Failure, String>> addOrDeleteItemCart({required int id}) async {
-    if (await netWorkChecker.hasconnected) {
-      try {
-        final message = await remoteDataSource.addOrDeleteItemCart(id: id);
-        return Right(message);
-      } on ServerException {
-        return Left(ServerFailure());
-      }
-    } else {
-      return Left(OfflineFailure());
-    }
-  }
-
-  @override
   Future<Either<Failure, String>> addOrDeleteItemFavorite(
       {required int id}) async {
     if (await netWorkChecker.hasconnected) {

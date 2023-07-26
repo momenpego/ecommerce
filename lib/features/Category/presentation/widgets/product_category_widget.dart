@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:ecommerce_app/core/Model/product_model.dart';
+import 'package:ecommerce_app/features/Product/data/models/product_model.dart';
 import 'package:ecommerce_app/core/resources/route_manger.dart';
 import 'package:flutter/material.dart';
 

@@ -21,10 +21,11 @@ class AppStyles {
         fontWeight: FontWeight.bold);
   }
 
-  static TextStyle smallCaptions({required double height, Color? color}) {
+  static TextStyle smallCaptions({required double height, Color? color , TextDecoration? isDis}) {
     return TextStyle(
         fontSize: height * 0.018,
         color: color ?? Colors.black,
+        decoration: isDis?? TextDecoration.none,
         fontWeight: FontWeight.w500);
   }
 }

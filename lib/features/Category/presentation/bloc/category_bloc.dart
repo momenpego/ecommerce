@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/errors/failurs.dart';
 import '../../data/models/category_item_model.dart';
-import '../../domain/usecases/add_cart_category_usecase.dart';
 import '../../domain/usecases/add_fav_category_usecase.dart';
 import '../../domain/usecases/get_category_usecase.dart';
 import '../../domain/usecases/get_item_category_usecase.dart';
@@ -17,10 +16,9 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   GetAllCategoryUseCase getAllCategory;
   GetCategoryItemUseCase getCategoryItem;
   AddOrDeleteCatergoryItemFavoriteUseCase addOrDeleteCatergoryItemFavorite;
-  AddOrDeleteCatergoryItemCartUseCase addOrDeleteCatergoryItemCart;
   late List<CategoryItemDatum> myItems;
   CategoryBloc(
-      {required this.addOrDeleteCatergoryItemCart,
+      {
       required this.addOrDeleteCatergoryItemFavorite,
       required this.getAllCategory,
       required this.getCategoryItem})
@@ -57,17 +55,6 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
                   myItems[event.index].inFavorites =
                       !myItems[event.index].inFavorites,
                   emit(CategoryAddItemFavoriteSuccessState(message: message))
-                });
-      } else if (event is AddCateroryItemCartEvent) {
-        final addOrFail = await addOrDeleteCatergoryItemCart.call(id: event.id);
-        addOrFail.fold(
-            (failure) => {
-                  emit(CategoryAddItemCartErrorState(
-                      message: _MessageOfError(failure: failure)))
-                },
-            (message) => {
-                  myItems[event.index].inCart = !myItems[event.index].inCart,
-                  emit(CategoryAddItemCartSuccessState(message: message))
                 });
       }
     });

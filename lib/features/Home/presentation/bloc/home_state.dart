@@ -23,13 +23,3 @@ class AddFavoriteErrorState extends HomeState {
   String mssageError;
   AddFavoriteErrorState({required this.mssageError});
 }
-
-class AddCartSuccessState extends HomeState {
-  String mssage;
-  AddCartSuccessState({required this.mssage});
-}
-
-class AddCartErrorState extends HomeState {
-  String mssageError;
-  AddCartErrorState({required this.mssageError});
-}

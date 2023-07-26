@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/core/Model/product_model.dart';
+import 'package:ecommerce_app/features/Product/data/models/product_model.dart';
 import 'package:ecommerce_app/features/Category/data/models/navgigat_models.dart';
 import 'package:ecommerce_app/features/Category/presentation/pages/category_product_page.dart';
 import 'package:ecommerce_app/features/Main/presentation/pages/main_page.dart';
@@ -7,7 +7,7 @@ import 'package:ecommerce_app/features/SignUp/presentation/pages/signup_page.dar
 import 'package:ecommerce_app/features/Splash/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/product_detailes_screen.dart';
+import '../../features/Product/presentation/pages/product_detailes_screen.dart';
 
 class Routes {
   static const String splashRoute = '/';

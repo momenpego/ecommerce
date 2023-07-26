@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:ecommerce_app/core/utils/app_snakbars.dart';
 import 'package:ecommerce_app/features/Category/data/models/navgigat_models.dart';
 import 'package:ecommerce_app/features/Category/presentation/bloc/category_bloc.dart';
 import 'package:flutter/material.dart';
@@ -30,16 +31,26 @@ class CategoryProductPage extends StatelessWidget {
 
   Widget _buildBody() {
     return BlocConsumer<CategoryBloc, CategoryState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is CategoryAddItemFavoriteSuccessState) {
+          AppSnakBarMessages.snakbarSuccessMesage(
+              context: context, message: state.message);
+        } else if (state is CategoryAddItemFavoriteErrorState) {
+          AppSnakBarMessages.snakbarErrorMesage(
+              context: context, message: state.message);
+        }
+      },
       builder: (context, state) {
         return Column(
           children: [
             if (state is CategoryItemsLoadingState)
               const ShimmerCategoryWidget(),
-               if(state is CategoryItemsSuccessState)
-               ProductCategoryWidget(
+            if (state is CategoryItemsSuccessState ||
+                state is CategoryAddItemFavoriteErrorState ||
+                state is CategoryAddItemFavoriteSuccessState)
+              ProductCategoryWidget(
                 data: context.read<CategoryBloc>().myItems,
-               )
+              )
           ],
         );
       },

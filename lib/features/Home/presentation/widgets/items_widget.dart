@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/core/Model/product_model.dart';
+import 'package:ecommerce_app/features/Product/data/models/product_model.dart';
 import 'package:ecommerce_app/core/resources/app_styles.dart';
 import 'package:ecommerce_app/core/resources/extentions.dart';
 import 'package:ecommerce_app/core/resources/route_manger.dart';

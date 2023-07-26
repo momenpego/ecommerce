@@ -13,20 +13,6 @@ class HomeRepositorieImp implements HomeRepositorie {
   HomeRepositorieImp(
       {required this.netWorkChecker, required this.remoteDataSource});
   @override
-  Future<Either<Failure, String>> addOrDeleteCart({required int id}) async {
-    if (await netWorkChecker.hasconnected) {
-      try {
-        final message = await remoteDataSource.addOrDeleteCart(id: id);
-        return Right(message);
-      } on ServerException {
-        return Left(ServerFailure());
-      }
-    } else {
-      return Left(OfflineFailure());
-    }
-  }
-
-  @override
   Future<Either<Failure, String>> addOrDeleteFavorite({required int id}) async {
     if (await netWorkChecker.hasconnected) {
       try {

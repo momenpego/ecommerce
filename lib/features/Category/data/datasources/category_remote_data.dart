@@ -5,37 +5,17 @@ import 'package:ecommerce_app/features/Category/data/models/all_category_model.d
 import 'package:ecommerce_app/features/Category/data/models/category_item_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../Home/data/models/cart_model.dart';
 import '../../../Home/data/models/favorite_model.dart';
 
 abstract class CategoryRemoteDataSource {
   Future<CategoryModel> getAllCategory();
   Future<CategoryItemsModel> getCategoryItems({required int id});
   Future<String> addOrDeleteItemFavorite({required int id});
-  Future<String> addOrDeleteItemCart({required int id});
 }
 
 class CategoryRemoteDataSourceImp implements CategoryRemoteDataSource {
   SharedPreferences sharedPreferences;
   CategoryRemoteDataSourceImp({required this.sharedPreferences});
-  @override
-  Future<String> addOrDeleteItemCart({required int id}) async {
-    final Map<String, dynamic> headers = {
-      'lang': 'en',
-      'Content-Type': 'application/json',
-      'Authorization': sharedPreferences.getString('TOKEN')
-    };
-    final Map<String, dynamic> pram = {'product_id': id};
-    Response response = await Diorequest.postdata(
-        url: 'carts', headers: headers, querypram: pram);
-    if (response.statusCode == 200) {
-      CartModel data = CartModel.fromJson(response.data);
-      final String message = data.message;
-      return message;
-    } else {
-      throw ServerException();
-    }
-  }
 
   @override
   Future<String> addOrDeleteItemFavorite({required int id}) async {
@@ -71,7 +51,11 @@ class CategoryRemoteDataSourceImp implements CategoryRemoteDataSource {
 
   @override
   Future<CategoryItemsModel> getCategoryItems({required int id}) async {
-    final Map<String, dynamic> headers = {'lang': 'en'};
+     final Map<String, dynamic> headers = {
+      'lang': 'en',
+      'Content-Type': 'application/json',
+      'Authorization': sharedPreferences.getString('TOKEN')
+    };
     final Response response = await Diorequest.getdata(url: 'categories/$id',headers: headers);
     if (response.statusCode == 200) {
       final CategoryItemsModel data =

@@ -8,5 +8,4 @@ abstract class CategoryRepositorie {
   Future<Either<Failure, CategoryItemEntitie>> getCategoryItems(
       {required int id});
   Future<Either<Failure, String>> addOrDeleteItemFavorite({required int id});
-  Future<Either<Failure, String>> addOrDeleteItemCart({required int id});
 }

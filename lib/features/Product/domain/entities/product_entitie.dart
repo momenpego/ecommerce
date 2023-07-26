@@ -1,4 +1,4 @@
-class ProductModel {
+class ProductEntitie {
   int id;
   double price;
   double oldPrice;
@@ -7,7 +7,7 @@ class ProductModel {
   String name;
   String description;
   bool inCart;
-  ProductModel(
+    ProductEntitie(
       {required this.id,
       required this.description,
       required this.discount,

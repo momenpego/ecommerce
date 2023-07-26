@@ -10,13 +10,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/home_model.dart';
 
 class ProductWidget extends StatelessWidget {
-   ProductWidget({
+  ProductWidget({
     super.key,
     required this.index,
     required this.myList,
   });
   int index;
-   List<HomeProduct> myList;
+  List<HomeProduct> myList;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,10 @@ class ProductWidget extends StatelessWidget {
                                     : 'old price: ${myList[index].price.toInt()}',
                                 maxLines: 1,
                                 style: AppStyles.smallCaptions(
-                                    height: context.height),
+                                    height: context.height,
+                                    isDis: myList[index].discount <= 0
+                                        ? TextDecoration.none
+                                        : TextDecoration.lineThrough),
                               ),
                             ],
                           ),
@@ -167,8 +170,8 @@ class ProductWidget extends StatelessWidget {
                       children: [
                         IconButton(
                             onPressed: () {
-                               context.read<HomeBloc>().add(AddFavoriteEvent(
-                                    id: myList[index].id, index: index));
+                              context.read<HomeBloc>().add(AddFavoriteEvent(
+                                  id: myList[index].id, index: index));
                             },
                             icon: Icon(
                               myList[index].inFavorites
