@@ -3,6 +3,7 @@ import 'package:ecommerce_app/core/Network/network_checker.dart';
 import 'package:ecommerce_app/features/Cart/data/datasources/cart_remote_data.dart';
 import 'package:ecommerce_app/features/Cart/data/repositories/cart_repo_imp.dart';
 import 'package:ecommerce_app/features/Cart/domain/repositories/cart_repo.dart';
+import 'package:ecommerce_app/features/Cart/presentation/bloc/cart_bloc.dart';
 import 'package:ecommerce_app/features/Category/data/datasources/category_remote_data.dart';
 import 'package:ecommerce_app/features/Category/data/repositories/category_rep_imp.dart';
 import 'package:ecommerce_app/features/Category/domain/repositories/category_rep.dart';
@@ -117,4 +118,7 @@ Future<void> injectAll() async {
       getAllCategory: sl(),
       getCategoryItem: sl()));
   sl.registerFactory(() => ProductBloc(addOrRemoveCart: sl()));
+
+  sl.registerFactory(() => CartBloc(
+      deleteItemCart: sl(), getCartData: sl(), updateCartQuantity: sl()));
 }

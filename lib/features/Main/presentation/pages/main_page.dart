@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/core/resources/extentions.dart';
+import 'package:ecommerce_app/core/resources/route_manger.dart';
 import 'package:ecommerce_app/features/Main/presentation/bloc/main_bloc.dart';
 import 'package:ecommerce_app/features/Main/presentation/widgets/bottom_nav_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,7 @@ class MainPage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             bottomNavigationBar: _bulidNavBar(),
-            appBar: _buildAppBar(),
+            appBar: _buildAppBar(context: context),
             body: _buildBody(context),
           );
         },
@@ -24,11 +26,25 @@ class MainPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return context
-              .read<MainBloc>()
-              .screens[context.read<MainBloc>().currentIndex];
+        .read<MainBloc>()
+        .screens[context.read<MainBloc>().currentIndex];
   }
 
-  AppBar _buildAppBar() => AppBar();
+  AppBar _buildAppBar({required BuildContext context}) => AppBar(
+        actions: [
+          Padding(
+            padding:  EdgeInsets.all(context.height*0.005),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.cartPage);
+                },
+                icon: Icon(
+                  Icons.shopping_cart_outlined,
+                  size: context.height * 0.035,
+                )),
+          )
+        ],
+      );
 
   BottomNavWidget _bulidNavBar() => const BottomNavWidget();
 }

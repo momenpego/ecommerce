@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/features/Cart/presentation/pages/cart_data_page.dart';
 import 'package:ecommerce_app/features/Product/data/models/product_model.dart';
 import 'package:ecommerce_app/features/Category/data/models/navgigat_models.dart';
 import 'package:ecommerce_app/features/Category/presentation/pages/category_product_page.dart';
@@ -16,6 +17,7 @@ class Routes {
   static const String mainPage = '/main';
   static const String categoryItems = '/category';
   static const String productPage = '/product';
+  static const String cartPage = '/cart';
 }
 
 class RouteGenerate {
@@ -40,6 +42,8 @@ class RouteGenerate {
         var model = routeSettings.arguments as ProductModel;
         return MaterialPageRoute(
             builder: (_) => ProductDetailesPage(model: model));
+      case Routes.cartPage:
+      return MaterialPageRoute(builder: (_)=> const CartDataPage());
       default:
         return MaterialPageRoute(builder: (_) => _unFoundedScreen());
     }
