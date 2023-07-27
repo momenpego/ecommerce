@@ -91,13 +91,35 @@ class QuantityWidget extends StatelessWidget {
                       x--;
                       context.read<CartBloc>().checkQuantity(
                           id: data.data.cartItems[index].id, d: x);
-                     x != 0? context.read<CartBloc>().add(UpdateCartQuantityEvent(
-                          id: data.data.cartItems[index].id, quantity: x)) : null;
+                      x != 0
+                          ? context.read<CartBloc>().add(
+                              UpdateCartQuantityEvent(
+                                  id: data.data.cartItems[index].id,
+                                  quantity: x))
+                          : null;
                       context.read<CartBloc>().add(GetCartDataEvent());
                     },
                     icon: Icon(
                       Icons.remove,
                       size: context.height * 0.03,
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: context.height * 0.01,
+            ),
+            Row(
+              children: [
+                TextButton(
+                    onPressed: () {
+                      context.read<CartBloc>().add(DeleteCartItemEvent(
+                          id: data.data.cartItems[index].id));
+                      context.read<CartBloc>().add(GetCartDataEvent());
+                    },
+                    child: Text(
+                      'Remove',
+                      style: AppStyles.smallCaptions(
+                          height: context.height, color: Colors.red),
                     )),
               ],
             )

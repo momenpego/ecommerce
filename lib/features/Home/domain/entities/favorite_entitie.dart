@@ -1,5 +1,5 @@
-class FavoriteEntitie{
+class FavoriteEntitieCart{
   bool status;
   String message;
-  FavoriteEntitie({required this.message , required this.status});
+  FavoriteEntitieCart({required this.message , required this.status});
 }

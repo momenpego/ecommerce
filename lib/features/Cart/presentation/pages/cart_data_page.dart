@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app/injection_cont.dart' as di;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../widgets/cart_nav_bar_widget.dart';
+
 class CartDataPage extends StatelessWidget {
   const CartDataPage({super.key});
 
@@ -13,6 +15,7 @@ class CartDataPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => di.sl<CartBloc>()..add(GetCartDataEvent()),
       child: Scaffold(
+        bottomNavigationBar: const CartNavBar(),
         appBar: AppBar(),
         body: _bulidBody(),
       ),
